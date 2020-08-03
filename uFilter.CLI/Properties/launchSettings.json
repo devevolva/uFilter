@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "uFilter.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "materialize unique \"d:/tmp/pics\" \"d:/tmp/video\" \"d:/tmp/uFilterOutput\""
+    }
+  }
+}
