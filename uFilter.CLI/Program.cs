@@ -19,9 +19,9 @@ namespace uFilter.CLI
                 Console.WriteLine(ex.Message);
             }
 
-            Console.WriteLine("");
-            Console.WriteLine("Press Enter to Quit...");
-            Console.Read();
+            //Console.WriteLine("");
+            //Console.WriteLine("Press Enter to Quit...");
+            //Console.Read();
         }
     }
 }
