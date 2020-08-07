@@ -27,7 +27,7 @@ namespace uFilter.CLI
             List<FileObject> uniqueDestinationList = new List<FileObject>();
 
             // Pass empty list uniqueDestinationList to compare sourceFileList to itself
-            uniqueSourceFileList.AddRange(ToUniqueFileObjectList(sourceFileList, uniqueDestinationList));
+            uniqueSourceFileList.AddRange(ToUniqueFileObjectList(sourceFileList));
             Console.WriteLine("Unique source file list created: {0} files", uniqueSourceFileList.Count);
             uniqueDestinationList.AddRange(ToUniqueFileObjectList(uniqueSourceFileList, targetFileList));
             Console.WriteLine("Unique destination file list created: {0} files", uniqueDestinationList.Count);
@@ -72,6 +72,33 @@ namespace uFilter.CLI
                         uniqueFileObjectList.Add(sourceFile);
                     }
 
+                }
+            }
+
+            return uniqueFileObjectList;
+        }
+
+        public List<FileObject> ToUniqueFileObjectList(List<FileObject> sourceFileList)
+        {
+            List<FileObject> uniqueFileObjectList = new List<FileObject>();
+            bool isUniqueToDestinationList = true;
+
+            foreach (FileObject sourceFile in sourceFileList)
+            {
+                // Check file is already in destination list, if so don't check target.
+                isUniqueToDestinationList = true;
+                foreach (FileObject destinationFile in uniqueFileObjectList)
+                {
+                    if (destinationFile.CompareHashString(sourceFile))
+                    {
+                        isUniqueToDestinationList = false;
+                        break;
+                    }
+                }
+
+                if (isUniqueToDestinationList)
+                {
+                    uniqueFileObjectList.Add(sourceFile);
                 }
             }
 

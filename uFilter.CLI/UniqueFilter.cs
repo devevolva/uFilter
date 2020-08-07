@@ -90,7 +90,20 @@ namespace uFilter.CLI
             // LIST UNIQUE FILES //////////////////////////////////////////////
             else if (commands == "list unique" || commands == "lu")
             {
-                if (dirs.Count == 2)
+                if(dirs.Count == 1)
+                {
+                    pathSource = dirs[0];
+                    DirectoryObject source = new DirectoryObject(pathSource);
+
+                    List<FileObject> sourceFileList = source.ToFileList();
+                    List<FileObject> uniqueSourceFileList = new List<FileObject>();
+
+                    UniqueFilterCommand ufCommand = new UniqueFilterCommand();
+                    // Pass empty list uniqueDestinationList to compare sourceFileList to itself
+                    uniqueSourceFileList.AddRange(ufCommand.ToUniqueFileObjectList(sourceFileList));
+                    ufCommand.FileObjectListToConsole(uniqueSourceFileList, isVerbose);
+                }
+                else if (dirs.Count == 2)
                 {
                     Console.WriteLine("Unique File List... ");
 
