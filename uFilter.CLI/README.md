@@ -56,6 +56,7 @@
     uf materialize unique [verbose] DIR_SOURCE DIR_TARGET DIR_DESTINATION
     uf mu [v] DIR_SOURCE DIR_TARGET DIR_DESTINATION
 
+#### Help
   Print this help information.
   
     uf help
